@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 - Formulario de contacto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Contacto</h1>
+        <p class="subtitulo">Completá el formulario y te responderemos a la brevedad.</p>
+    </header>
+
+    <main>
+        <form action="#" method="post" novalidate>
+
+            <!-- Campo: Nombre -->
+            <div class="campo">
+                <label for="nombre">Nombre completo:</label>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ej: Ana García"
+                    required
+                    minlength="3"
+                    maxlength="60"
+                    autocomplete="name"
+                >
+            </div>
+
+            <!-- Campo: Email -->
+            <div class="campo">
+                <label for="email">Correo electrónico:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Ej: ana@correo.com"
+                    required
+                    autocomplete="email"
+                >
+            </div>
+
+            <!-- Campo: Mensaje -->
+            <div class="campo">
+                <label for="mensaje">Mensaje:</label>
+                <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="5"
+                    placeholder="Escribí tu mensaje aquí..."
+                    required
+                    minlength="10"
+                    maxlength="500"
+                ></textarea>
+            </div>
+
+            <!-- Botón de envío -->
+            <div class="campo">
+                <button type="submit">Enviar mensaje</button>
+            </div>
+
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,162 @@
+/* =========================================================
+   1. VARIABLES GLOBALES
+   ========================================================= */
+:root {
+    --color-primario: #2c3e50;
+    --color-acento: #3498db;
+    --color-acento-hover: #2980b9;
+    --color-texto: #222;
+    --color-fondo: #f4f4f4;
+    --color-borde: #ccc;
+    --color-error: #e74c3c;
+
+    --fuente-base: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --radio: 8px;
+    --espaciado-sm: 0.5rem;
+    --espaciado-md: 1rem;
+    --espaciado-lg: 2rem;
+}
+
+/* =========================================================
+   2. RESET BÁSICO
+   ========================================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================================
+   3. LAYOUT GENERAL
+   ========================================================= */
+body {
+    font-family: var(--fuente-base);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    padding: 2rem 1rem;
+    line-height: 1.6;
+}
+
+header {
+    max-width: 600px;
+    margin: 0 auto var(--espaciado-lg);
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: var(--espaciado-sm);
+    color: var(--color-primario);
+}
+
+.subtitulo {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* =========================================================
+   4. FORMULARIO
+   ========================================================= */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: var(--espaciado-lg);
+    border-radius: var(--radio);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--espaciado-md);
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--color-primario);
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
+    color: var(--color-texto);
+}
+
+/* Estado de foco accesible */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+/* Estado válido */
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+    border-color: #27ae60;
+}
+
+/* Estado inválido */
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--color-error);
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Botón */
+button {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--color-acento);
+    border: none;
+    border-radius: var(--radio);
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: var(--color-acento-hover);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(52, 152, 219, 0.5);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+   5. RESPONSIVIDAD
+   ========================================================= */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+
+    form {
+        padding: var(--espaciado-md);
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+}
