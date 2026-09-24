@@ -1,0 +1,36 @@
+/* Variables CSS globales */
+:root {
+    --color-texto: #222;
+    --color-fondo: #f9f9f9;
+    --fuente-base: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fuente-base);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    max-width: 60ch;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
