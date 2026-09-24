@@ -1,28 +1,48 @@
+/* =========================================================
+   1. VARIABLES GLOBALES
+   ========================================================= */
 :root {
+    /* Colores base */
     --color-borde: #333;
     --color-encabezado: #222;
     --color-texto-encabezado: #fff;
-    --fuente-base: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --color-dia: #34495e;
+    --color-fondo: #f4f4f4;
+    --color-texto: #222;
 
     /* Colores por materia */
-    --c-datos:        #f4a3a3;  /* rojo */
-    --c-ux:           #a9b8d4;  /* azul grisáceo */
-    --c-software:     #a8d8b0;  /* verde */
-    --c-poo:          #f2c39b;  /* naranja */
-    --c-discreta:     #f2e89b;  /* amarillo */
-    --c-arquitectura: #e8a98c;  /* salmón */
+    --c-datos:        #f4a3a3;
+    --c-ux:           #a9b8d4;
+    --c-software:     #a8d8b0;
+    --c-poo:          #f2c39b;
+    --c-discreta:     #f2e89b;
+    --c-arquitectura: #e8a98c;
+
+    /* Tipografía */
+    --fuente-base: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    /* Espaciados */
+    --espaciado-sm: 0.5rem;
+    --espaciado-md: 0.6rem;
+    --espaciado-lg: 1.5rem;
 }
 
+/* =========================================================
+   2. RESET BÁSICO
+   ========================================================= */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* =========================================================
+   3. LAYOUT GENERAL
+   ========================================================= */
 body {
     font-family: var(--fuente-base);
-    background: #f4f4f4;
-    color: #222;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
     padding: 2rem 1rem;
     line-height: 1.4;
 }
@@ -30,14 +50,23 @@ body {
 h1 {
     text-align: center;
     font-size: 1.6rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--espaciado-lg);
 }
 
+/* Contenedor con scroll horizontal para pantallas chicas */
+.tabla-scroll {
+    overflow-x: auto;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   4. TABLA
+   ========================================================= */
 table {
     border-collapse: collapse;
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 700px; /* evita que las columnas se aplasten */
     background: #fff;
     font-size: 0.85rem;
     table-layout: fixed;
@@ -46,24 +75,33 @@ table {
 caption {
     caption-side: top;
     font-style: italic;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--espaciado-sm);
     color: #555;
     font-size: 0.9rem;
 }
 
 th, td {
     border: 1px solid var(--color-borde);
-    padding: 0.6rem;
+    padding: var(--espaciado-md);
     text-align: center;
     vertical-align: middle;
 }
 
 thead th {
-    background: var(--color-encabezado);
+    background-color: var(--color-encabezado);
     color: var(--color-texto-encabezado);
     font-size: 0.9rem;
 }
 
+/* Columna de días */
+tbody th.dia {
+    background-color: var(--color-dia);
+    color: #fff;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+}
+
+/* Contenido de cada celda */
 td strong {
     display: block;
     font-size: 0.85rem;
@@ -76,16 +114,63 @@ td span {
     font-weight: 600;
 }
 
-/* Colores por materia */
-.mat-datos        { background: var(--c-datos); }
-.mat-ux           { background: var(--c-ux); }
-.mat-software     { background: var(--c-software); }
-.mat-poo          { background: var(--c-poo); }
-.mat-discreta     { background: var(--c-discreta); }
-.mat-arquitectura { background: var(--c-arquitectura); }
-
+/* Pie de tabla */
 tfoot td {
-    background: #dfe6e9;
+    background-color: #dfe6e9;
     font-style: italic;
     font-size: 0.8rem;
+}
+
+/* =========================================================
+   5. COLORES POR MATERIA
+   ========================================================= */
+.mat-datos        { background-color: var(--c-datos); }
+.mat-ux           { background-color: var(--c-ux); }
+.mat-software     { background-color: var(--c-software); }
+.mat-poo          { background-color: var(--c-poo); }
+.mat-discreta     { background-color: var(--c-discreta); }
+.mat-arquitectura { background-color: var(--c-arquitectura); }
+
+/* =========================================================
+   6. RESPONSIVIDAD
+   ========================================================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    th, td {
+        padding: 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    td strong {
+        font-size: 0.75rem;
+    }
+
+    td span {
+        font-size: 0.7rem;
+    }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+    table {
+        font-size: 0.7rem;
+    }
+
+    thead th {
+        font-size: 0.75rem;
+        padding: 0.3rem;
+    }
+
+    tbody th.dia {
+        font-size: 0.8rem;
+    }
 }

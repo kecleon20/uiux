@@ -12,96 +12,99 @@
     </header>
 
     <main>
-        <table>
-            <caption>Horarios de clases por día · Turno noche</caption>
+        <!-- Contenedor con scroll horizontal para pantallas chicas -->
+        <div class="tabla-scroll">
+            <table>
+                <caption>Horarios de clases por día · Turno noche</caption>
 
-            <!-- ENCABEZADOS -->
-            <thead>
-                <tr>
-                    <th scope="col">Día</th>
-                    <th scope="col">19:00</th>
-                    <th scope="col">20:00</th>
-                    <th scope="col">21:00</th>
-                    <th scope="col">22:00</th>
-                    <th scope="col">23:00</th>
-                </tr>
-            </thead>
+                <!-- ENCABEZADOS -->
+                <thead>
+                    <tr>
+                        <th scope="col">Día</th>
+                        <th scope="col">19:00</th>
+                        <th scope="col">20:00</th>
+                        <th scope="col">21:00</th>
+                        <th scope="col">22:00</th>
+                        <th scope="col">23:00</th>
+                    </tr>
+                </thead>
 
-            <!-- CUERPO -->
-            <tbody>
-                <!-- FILA 1 - LUNES -->
-                <tr>
-                    <th scope="row" class="dia">Lunes</th>
-                    <td colspan="2" class="mat-datos">
-                        <strong>Alg. y Estruc. de Datos</strong>
-                        <span>18:15 - 20:30</span>
-                    </td>
-                    <td colspan="3" class="mat-ux">
-                        <strong>Dis. Expe. Usuario e Inter. Usua</strong>
-                        <span>20:40 - 23:05</span>
-                    </td>
-                </tr>
+                <!-- CUERPO -->
+                <tbody>
+                    <!-- LUNES -->
+                    <tr>
+                        <th scope="row" class="dia">Lunes</th>
+                        <td colspan="2" class="mat-datos">
+                            <strong>Alg. y Estruc. de Datos</strong>
+                            <span>18:15 - 20:30</span>
+                        </td>
+                        <td colspan="3" class="mat-ux">
+                            <strong>Dis. Expe. Usuario e Inter. Usua</strong>
+                            <span>20:40 - 23:05</span>
+                        </td>
+                    </tr>
 
-                <!-- FILA 2 - MARTES -->
-                <tr>
-                    <th scope="row" class="dia">Martes</th>
-                    <td class="mat-datos">
-                        <strong>Alg. y Estruc. de Datos</strong>
-                        <span>19:00 - 19:45</span>
-                    </td>
-                    <td colspan="4" class="mat-software">
-                        <strong>Ingeniería de Software I</strong>
-                        <span>20:40 - 23:05</span>
-                    </td>
-                </tr>
+                    <!-- MARTES -->
+                    <tr>
+                        <th scope="row" class="dia">Martes</th>
+                        <td class="mat-datos">
+                            <strong>Alg. y Estruc. de Datos</strong>
+                            <span>19:00 - 19:45</span>
+                        </td>
+                        <td colspan="4" class="mat-software">
+                            <strong>Ingeniería de Software I</strong>
+                            <span>20:40 - 23:05</span>
+                        </td>
+                    </tr>
 
-                <!-- FILA 3 - MIÉRCOLES -->
-                <tr>
-                    <th scope="row" class="dia">Miércoles</th>
-                    <td class="mat-software">
-                        <strong>Ingeniería de Software I</strong>
-                        <span>17:30 - 18:55</span>
-                    </td>
-                    <td colspan="3" class="mat-poo">
-                        <strong>Prog. Orient. a Objetos</strong>
-                        <span>19:45 - 22:10</span>
-                    </td>
-                </tr>
+                    <!-- MIÉRCOLES -->
+                    <tr>
+                        <th scope="row" class="dia">Miércoles</th>
+                        <td class="mat-software">
+                            <strong>Ingeniería de Software I</strong>
+                            <span>17:30 - 18:55</span>
+                        </td>
+                        <td colspan="3" class="mat-poo">
+                            <strong>Prog. Orient. a Objetos</strong>
+                            <span>19:45 - 22:10</span>
+                        </td>
+                    </tr>
 
-                <!-- FILA 4 - JUEVES -->
-                <tr>
-                    <th scope="row" class="dia">Jueves</th>
-                    <td colspan="3" class="mat-arquitectura">
-                        <strong>Arquitectura de Computadoras</strong>
-                        <span>19:00 - 21:25</span>
-                    </td>
-                    <td colspan="2" class="mat-discreta">
-                        <strong>Matemática Discreta</strong>
-                        <span>21:25 - 23:50</span>
-                    </td>
-                </tr>
+                    <!-- JUEVES -->
+                    <tr>
+                        <th scope="row" class="dia">Jueves</th>
+                        <td colspan="3" class="mat-arquitectura">
+                            <strong>Arquitectura de Computadoras</strong>
+                            <span>19:00 - 21:25</span>
+                        </td>
+                        <td colspan="2" class="mat-discreta">
+                            <strong>Matemática Discreta</strong>
+                            <span>21:25 - 23:50</span>
+                        </td>
+                    </tr>
 
-                <!-- FILA 5 - VIERNES -->
-                <tr>
-                    <th scope="row" class="dia">Viernes</th>
-                    <td colspan="2" class="mat-poo">
-                        <strong>Prog. Orient. a Objetos</strong>
-                        <span>19:00 - 20:30</span>
-                    </td>
-                    <td colspan="3" class="mat-arquitectura">
-                        <strong>Arquitectura de Computadoras</strong>
-                        <span>20:40 - 23:00</span>
-                    </td>
-                </tr>
-            </tbody>
+                    <!-- VIERNES -->
+                    <tr>
+                        <th scope="row" class="dia">Viernes</th>
+                        <td colspan="2" class="mat-poo">
+                            <strong>Prog. Orient. a Objetos</strong>
+                            <span>19:00 - 20:30</span>
+                        </td>
+                        <td colspan="3" class="mat-arquitectura">
+                            <strong>Arquitectura de Computadoras</strong>
+                            <span>20:40 - 23:00</span>
+                        </td>
+                    </tr>
+                </tbody>
 
-            <!-- PIE -->
-            <tfoot>
-                <tr>
-                    <td colspan="6">Total: 6 materias · Turno noche · 5 días</td>
-                </tr>
-            </tfoot>
-        </table>
+                <!-- PIE -->
+                <tfoot>
+                    <tr>
+                        <td colspan="6">Total: 6 materias · Turno noche · 5 días</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </main>
 </body>
 </html>
