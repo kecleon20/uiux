@@ -1,0 +1,91 @@
+:root {
+    --color-borde: #333;
+    --color-encabezado: #222;
+    --color-texto-encabezado: #fff;
+    --fuente-base: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    /* Colores por materia */
+    --c-datos:        #f4a3a3;  /* rojo */
+    --c-ux:           #a9b8d4;  /* azul grisáceo */
+    --c-software:     #a8d8b0;  /* verde */
+    --c-poo:          #f2c39b;  /* naranja */
+    --c-discreta:     #f2e89b;  /* amarillo */
+    --c-arquitectura: #e8a98c;  /* salmón */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fuente-base);
+    background: #f4f4f4;
+    color: #222;
+    padding: 2rem 1rem;
+    line-height: 1.4;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    font-size: 0.85rem;
+    table-layout: fixed;
+}
+
+caption {
+    caption-side: top;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+th, td {
+    border: 1px solid var(--color-borde);
+    padding: 0.6rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+thead th {
+    background: var(--color-encabezado);
+    color: var(--color-texto-encabezado);
+    font-size: 0.9rem;
+}
+
+td strong {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+td span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Colores por materia */
+.mat-datos        { background: var(--c-datos); }
+.mat-ux           { background: var(--c-ux); }
+.mat-software     { background: var(--c-software); }
+.mat-poo          { background: var(--c-poo); }
+.mat-discreta     { background: var(--c-discreta); }
+.mat-arquitectura { background: var(--c-arquitectura); }
+
+tfoot td {
+    background: #dfe6e9;
+    font-style: italic;
+    font-size: 0.8rem;
+}
