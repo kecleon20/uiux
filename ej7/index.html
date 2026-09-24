@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7 - Modelo de caja</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Modelo de caja (Box Model)</h1>
+        <p class="subtitulo">
+            Tres tarjetas con el mismo tamaño visual gracias a
+            <code>box-sizing: border-box</code>.
+        </p>
+    </header>
+
+    <main class="contenedor">
+        <div class="card">
+            <h2>Tarjeta 1</h2>
+            <p>
+                Esta tarjeta tiene padding, borde y margen.
+                Su ancho total se calcula con <code>border-box</code>.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Tarjeta 2</h2>
+            <p>
+                Todas las tarjetas miden exactamente lo mismo,
+                sin importar cuánto padding o borde tengan.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Tarjeta 3</h2>
+            <p>
+                El modelo de caja nos permite controlar
+                cada capa: contenido, padding, borde y margen.
+            </p>
+        </div>
+    </main>
+</body>
+</html>

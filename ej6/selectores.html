@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6 - Selectores CSS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="principal">
+        <h1>Tipos de selectores en CSS</h1>
+
+        <p>
+            Este párrafo está <span>dentro del div principal</span>
+            y sirve para demostrar selectores descendientes.
+        </p>
+
+        <!-- Card 1 -->
+        <div class="card">
+            <h2>Selector de clase</h2>
+            <p>
+                Se aplica a todos los elementos con
+                <span class="resaltado">class="card"</span>.
+            </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <h2>Selector descendiente</h2>
+            <p>
+                Selecciona elementos <span>dentro de otro</span>,
+                como <code>.card p</code>.
+            </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card destacada">
+            <h2>Selector de ID</h2>
+            <p id="destacado">
+                Este párrafo tiene <span>id="destacado"</span>
+                y se selecciona con <code>#destacado</code>.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
