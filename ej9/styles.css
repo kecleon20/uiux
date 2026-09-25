@@ -1,0 +1,180 @@
+/* =========================================================
+   1. VARIABLES GLOBALES
+   ========================================================= */
+:root {
+    --color-primario: #2c3e50;
+    --color-acento: #3498db;
+    --color-acento-hover: #2980b9;
+    --color-precio: #27ae60;
+    --color-texto: #222;
+    --color-fondo: #f4f6f8;
+    --color-card: #ffffff;
+    --fuente-base: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --radio: 10px;
+    --gap: 1.5rem;
+}
+
+/* =========================================================
+   2. RESET + BOX-SIZING
+   ========================================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================================
+   3. LAYOUT GENERAL
+   ========================================================= */
+body {
+    font-family: var(--fuente-base);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.5;
+    padding: 2rem 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* =========================================================
+   4. GALERÍA (FLEXBOX)
+   ========================================================= */
+.galeria {
+    display: flex;              /* activa Flexbox */
+    flex-wrap: wrap;            /* permite bajar a la siguiente fila */
+    gap: var(--gap);            /* separación entre tarjetas */
+    justify-content: center;    /* centra las tarjetas */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   5. TARJETAS DE PRODUCTO
+   ========================================================= */
+.card {
+    /* 
+       flex: grow shrink basis
+       - grow: 1 → puede crecer
+       - shrink: 1 → puede encogerse
+       - basis: 250px → tamaño base
+    */
+    flex: 1 1 250px;
+    max-width: 320px;           /* no crece más allá de 320px */
+
+    background-color: var(--color-card);
+    border-radius: var(--radio);
+    overflow: hidden;           /* recorta la imagen a los bordes */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;     /* imagen arriba, info abajo */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Imagen */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;          /* recorta sin deformar */
+    display: block;
+}
+
+/* Bloque de info */
+.card-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;                    /* ocupa el espacio restante */
+}
+
+.card-info h2 {
+    font-size: 1.05rem;
+    color: var(--color-primario);
+    font-weight: 600;
+}
+
+.card-info .precio {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-precio);
+    margin-top: auto;           /* empuja el precio hacia abajo */
+}
+
+/* Botón */
+.card-info button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--color-acento);
+    border: none;
+    border-radius: var(--radio);
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.card-info button:hover {
+    background-color: var(--color-acento-hover);
+}
+
+.card-info button:active {
+    transform: scale(0.98);
+}
+
+.card-info button:focus-visible {
+    outline: 3px solid rgba(52, 152, 219, 0.5);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+   6. RESPONSIVIDAD
+   ========================================================= */
+
+/* Tablets: 2 o 3 cards por fila gracias al flex-basis */
+@media (max-width: 900px) {
+    .card {
+        flex: 1 1 220px;
+    }
+}
+
+/* Celulares: 1 card por fila */
+@media (max-width: 600px) {
+    :root {
+        --gap: 1rem;
+    }
+
+    body {
+        padding: 1rem 0.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
