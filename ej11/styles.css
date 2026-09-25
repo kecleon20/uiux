@@ -1,0 +1,105 @@
+/* =========================================================
+   Ejercicio 11 — Pseudo-clases y pseudo-elementos
+   Autor: [Tu nombre]
+   Descripción: Estilizado de una lista de enlaces usando
+   :hover, :nth-child() y ::before/::after.
+   ========================================================= */
+
+/* ---------- 1. Reset básico ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: #f4f6f8;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- 2. Contenedor del menú ---------- */
+.menu__lista {
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem 0;
+  width: 260px;
+}
+
+/* ---------- 3. Ítems de la lista ---------- */
+.menu__item {
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.menu__item:last-child {
+  border-bottom: none;
+}
+
+/* Pseudo-clase :nth-child() → filas pares con fondo distinto */
+.menu__item:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* ---------- 4. Enlaces ---------- */
+.menu__enlace {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 500;
+  padding-left: 1.5rem; /* espacio para el icono ::before */
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* Pseudo-elemento ::before → icono decorativo (flecha) */
+.menu__enlace::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  color: #2563eb;
+}
+
+/* Pseudo-clase :hover → cambia color y muestra la flecha */
+.menu__enlace:hover {
+  color: #2563eb;
+  transform: translateX(4px);
+}
+
+.menu__enlace:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Pseudo-elemento ::after → subrayado animado */
+.menu__enlace::after {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease;
+}
+
+.menu__enlace:hover::after {
+  width: calc(100% - 1.5rem);
+}
+
+/* ---------- 5. Responsividad ---------- */
+@media (max-width: 480px) {
+  .menu__lista {
+    width: 100%;
+  }
+  body {
+    padding: 1rem;
+  }
+}

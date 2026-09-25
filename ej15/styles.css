@@ -1,0 +1,210 @@
+/* =========================================================
+   Ejercicio 10 — CSS Grid: layout de página
+   Autor: [Tu nombre]
+   Descripción: layout con header, sidebar, main y footer
+   usando display: grid y grid-template-areas.
+   ========================================================= */
+
+/* ---------- 1. Variables (reutilizables del Ej. 14) ---------- */
+:root {
+  --color-primario:   #2563eb;
+  --color-fondo:      #f4f6f8;
+  --color-superficie: #ffffff;
+  --color-texto:      #1f2937;
+  --color-suave:      #6b7280;
+  --color-borde:      #e5e7eb;
+
+  --espaciado-sm: 0.5rem;
+  --espaciado-md: 1rem;
+  --espaciado-lg: 2rem;
+
+  --radio: 12px;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transicion: 0.3s ease;
+}
+
+/* ---------- 2. Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: var(--espaciado-md);
+}
+
+/* ---------- 3. Contenedor GRID ---------- */
+.layout {
+  display: grid;
+
+  /* Áreas nombradas: cada string es una fila */
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+
+  /* Columnas: sidebar fija + main fluido */
+  grid-template-columns: 240px 1fr;
+
+  /* Filas: header auto, main crece, footer auto */
+  grid-template-rows: auto 1fr auto;
+
+  gap: var(--espaciado-md);
+
+  min-height: calc(100vh - 2 * var(--espaciado-md));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- 4. Asignación de áreas ---------- */
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main    { grid-area: main; }
+.footer  { grid-area: footer; }
+
+/* ---------- 5. Header ---------- */
+.header {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-md) var(--espaciado-lg);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  border: 1px solid var(--color-borde);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaciado-sm);
+}
+
+.header h1 {
+  color: var(--color-primario);
+  font-size: 1.5rem;
+}
+
+.header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaciado-md);
+}
+
+.header nav a {
+  color: var(--color-texto);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transicion);
+}
+
+.header nav a:hover {
+  color: var(--color-primario);
+}
+
+/* ---------- 6. Sidebar ---------- */
+.sidebar {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-md);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  border: 1px solid var(--color-borde);
+  height: fit-content;
+}
+
+.sidebar h2 {
+  color: var(--color-primario);
+  margin-bottom: var(--espaciado-sm);
+  font-size: 1.1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-sm);
+}
+
+.sidebar li a {
+  display: block;
+  padding: var(--espaciado-sm);
+  border-radius: 6px;
+  color: var(--color-suave);
+  text-decoration: none;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.sidebar li a:hover {
+  background-color: #eff6ff;
+  color: var(--color-primario);
+}
+
+/* ---------- 7. Contenido principal ---------- */
+.main {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-lg);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  border: 1px solid var(--color-borde);
+}
+
+.main h2 {
+  color: var(--color-primario);
+  margin-bottom: var(--espaciado-md);
+}
+
+.main p {
+  color: var(--color-suave);
+  margin-bottom: var(--espaciado-md);
+}
+
+.main p:last-child {
+  margin-bottom: 0;
+}
+
+.main code {
+  background-color: #eff6ff;
+  color: var(--color-primario);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* ---------- 8. Footer ---------- */
+.footer {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-md);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  border: 1px solid var(--color-borde);
+  text-align: center;
+  color: var(--color-suave);
+}
+
+/* =========================================================
+   RESPONSIVIDAD (mobile-first → se conecta con el Ej. 15)
+   ========================================================= */
+
+/* ---------- Móvil (<768px): 1 columna, sin sidebar ---------- */
+@media (max-width: 767px) {
+  .layout {
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .header {
+    justify-content: center;
+    text-align: center;
+  }
+}

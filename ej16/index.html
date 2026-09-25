@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 16 — Animaciones con @keyframes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenedor">
+
+    <h1 class="titulo">Ejercicio 16 — Animaciones</h1>
+
+    <!-- ============================================
+         1) SPINNER: @keyframes con rotación continua
+         Control: duration 1s, linear, infinite
+         ============================================ -->
+    <section class="seccion">
+      <h2 class="seccion__titulo">Spinner de carga</h2>
+      <div class="spinner" role="status" aria-live="polite" aria-label="Cargando contenido">
+        <span class="sr-only">Cargando…</span>
+      </div>
+    </section>
+
+    <!-- ============================================
+         2) TARJETA: fade-in + slide-up
+         Control: duration 0.8s, cubic-bezier, 1
+         ============================================ -->
+    <section class="seccion">
+      <h2 class="seccion__titulo">Tarjeta animada</h2>
+
+      <article class="tarjeta">
+        <h3 class="tarjeta__titulo">Hola 👋</h3>
+        <p class="tarjeta__texto">
+          Aparezco con un efecto <em>fade-in + slide-up</em> suave,
+          animando solo <code>opacity</code> y <code>transform</code>
+          para mantener 60 fps.
+        </p>
+        <button class="tarjeta__boton" id="reiniciar">Reiniciar animación</button>
+      </article>
+    </section>
+
+  </main>
+
+  <script>
+    // Reinicio de animación (truco del reflow forzado)
+    const boton = document.getElementById('reiniciar');
+    boton.addEventListener('click', () => {
+      const tarjeta = document.querySelector('.tarjeta');
+      tarjeta.style.animation = 'none';
+      void tarjeta.offsetWidth;       // fuerza reflow
+      tarjeta.style.animation = '';   // vuelve a aplicar la del CSS
+    });
+  </script>
+
+</body>
+</html>

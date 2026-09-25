@@ -1,0 +1,125 @@
+/* =========================================================
+   Ejercicio 16 — Animaciones con @keyframes
+   Descripción: spinner de carga (loop infinito) y tarjeta
+   con fade-in + slide-up (una sola vez).
+   Evaluación cubierta:
+     - Fluidez → solo animamos opacity y transform (GPU)
+     - Sintaxis correcta → @keyframes con from/to y forma larga
+   ========================================================= */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --color-primario:   #2563eb;
+  --color-fondo:      #f4f6f8;
+  --color-superficie: #ffffff;
+  --color-texto:      #1f2937;
+  --color-suave:      #6b7280;
+  --color-borde:      #e5e7eb;
+
+  --espaciado-sm: 0.5rem;
+  --espaciado-md: 1rem;
+  --espaciado-lg: 2rem;
+
+  --radio: 12px;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transicion: 0.3s ease;
+
+  /* Curva personalizada: arranque rápido, frenada muy suave */
+  --curva-suave: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- 2. Reset + base ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: var(--espaciado-lg) var(--espaciado-md);
+}
+
+.contenedor {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-lg);
+}
+
+.titulo {
+  text-align: center;
+  color: var(--color-primario);
+  font-size: 1.75rem;
+}
+
+.seccion {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-lg);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  border: 1px solid var(--color-borde);
+  text-align: center;
+}
+
+.seccion__titulo {
+  font-size: 1rem;
+  color: var(--color-suave);
+  margin-bottom: var(--espaciado-md);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+/* Utilidad accesibilidad: texto solo para lectores */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   SPINNER — @keyframes + animation
+   ========================================================= */
+
+/*
+  Sintaxis correcta del @keyframes:
+    - Nombre en kebab-case o camelCase (consistente)
+    - Uso de from/to (o 0%/100%)
+    - Solo propiedades animables (transform)
+*/
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+
+  border: 6px solid var(--color-borde);
+  border-top-color: var(--color-primario);
+  border-radius: 50%;
+
+  /* ---------- Control de la animación (forma LARGA) ---------- */
+  animation-name: girar;
+  animation-duration: 1s;                    /* ← duración */
+  animation-timing-function: linear;         /* ← velocidad constante */
+  animation-iteration-count: infinite;       /* ← bucle infinito */
+  animation-fill-mode: none;                 /* no hace falta aquí */
+
+  /* ---------- Optimización GPU ---------- */
+  will-change: transform;
+  transform: translateZ(0);                  /* fuerza capa GPU */
+  backface-visibility: hidden;
+}

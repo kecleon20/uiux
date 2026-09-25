@@ -1,0 +1,184 @@
+/* =========================================================
+   Ejercicio 13 — Formulario estilizado
+   Descripción: estilos con bordes redondeados, estados
+   :focus, :hover y :active con transiciones suaves.
+   ========================================================= */
+
+/* ---------- 1. Reset básico ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: #f4f6f8;
+  color: #1f2937;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ---------- 2. Contenedor del formulario ---------- */
+.formulario {
+  width: 100%;
+  max-width: 460px;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.formulario__titulo {
+  font-size: 1.5rem;
+  color: #2563eb;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* ---------- 3. Grupos de campos ---------- */
+.formulario__grupo {
+  margin-bottom: 1.25rem;
+}
+
+.formulario__label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #374151;
+}
+
+/* ---------- 4. Inputs y textarea ---------- */
+.formulario__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1f2937;
+  background-color: #f9fafb;
+
+  /* Bordes redondeados */
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+
+  outline: none;
+
+  /* Transición suave para los cambios de estado */
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+.formulario__input::placeholder {
+  color: #9ca3af;
+}
+
+/* Hover sobre el input: ligero cambio */
+.formulario__input:hover {
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+}
+
+/* :focus → estado claramente diferenciado */
+.formulario__input:focus {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Textarea: alto mínimo y redimensionado vertical */
+.formulario__input--textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ---------- 5. Checkbox + label ---------- */
+.formulario__grupo--check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.formulario__check {
+  width: 18px;
+  height: 18px;
+  accent-color: #2563eb;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.formulario__check:hover {
+  transform: scale(1.1);
+}
+
+.formulario__label--check {
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* ---------- 6. Botón ---------- */
+.formulario__boton {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  margin-top: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2563eb;
+
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+}
+
+/* :hover → se oscurece y eleva */
+.formulario__boton:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+  transform: translateY(-2px);
+}
+
+/* :active → se "hunde" al pulsar */
+.formulario__boton:active {
+  background-color: #1e40af;
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
+/* :focus-visible → accesible con teclado */
+.formulario__boton:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.4);
+  outline-offset: 2px;
+}
+
+/* ---------- 7. Responsividad ---------- */
+@media (max-width: 480px) {
+  .formulario {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .formulario__titulo {
+    font-size: 1.25rem;
+  }
+
+  .formulario__input {
+    font-size: 0.95rem;
+  }
+}

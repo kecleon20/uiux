@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 13 — Formulario estilizado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenedor">
+    <form class="formulario" action="#" method="post" novalidate>
+
+      <h1 class="formulario__titulo">Contáctanos</h1>
+
+      <!-- Campo: Nombre -->
+      <div class="formulario__grupo">
+        <label class="formulario__label" for="nombre">Nombre</label>
+        <input
+          class="formulario__input"
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+          autocomplete="name"
+          required>
+      </div>
+
+      <!-- Campo: Email -->
+      <div class="formulario__grupo">
+        <label class="formulario__label" for="email">Correo electrónico</label>
+        <input
+          class="formulario__input"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="tucorreo@ejemplo.com"
+          autocomplete="email"
+          required>
+      </div>
+
+      <!-- Campo: Mensaje -->
+      <div class="formulario__grupo">
+        <label class="formulario__label" for="mensaje">Mensaje</label>
+        <textarea
+          class="formulario__input formulario__input--textarea"
+          id="mensaje"
+          name="mensaje"
+          rows="4"
+          placeholder="Escribe tu mensaje aquí..."
+          required></textarea>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="formulario__grupo formulario__grupo--check">
+        <input
+          class="formulario__check"
+          type="checkbox"
+          id="acepto"
+          name="acepto"
+          required>
+        <label class="formulario__label formulario__label--check" for="acepto">
+          Acepto la política de privacidad
+        </label>
+      </div>
+
+      <!-- Botón -->
+      <button class="formulario__boton" type="submit">Enviar mensaje</button>
+
+    </form>
+  </main>
+
+</body>
+</html>

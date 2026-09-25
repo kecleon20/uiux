@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 14 — Variables CSS y temas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenedor">
+    <h1 class="titulo">Variables CSS y temas</h1>
+    <p class="texto">
+      Este sitio usa variables CSS definidas en <code>:root</code> para
+      colores, espaciados, radios y sombras.
+    </p>
+
+    <button class="boton" id="toggle-tema">Cambiar tema 🌙</button>
+
+    <div class="tarjeta">
+      <h2 class="tarjeta__titulo">Tarjeta de ejemplo</h2>
+      <p class="tarjeta__texto">Reutilizando las mismas variables en distintos componentes.</p>
+    </div>
+  </main>
+
+  <script>
+    // Cambio de tema: solo alternamos la clase en <html>
+    const boton = document.getElementById('toggle-tema');
+    boton.addEventListener('click', () => {
+      document.documentElement.classList.toggle('tema-oscuro');
+    });
+  </script>
+
+</body>
+</html>

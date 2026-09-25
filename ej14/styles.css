@@ -1,0 +1,166 @@
+/* =========================================================
+   Ejercicio 14 — Variables CSS y temas
+   Descripción: sistema de diseño basado en variables CSS
+   con soporte para modo claro / oscuro.
+   ========================================================= */
+
+/* ---------- 1. Variables globales (tema claro por defecto) ---------- */
+:root {
+  /* Colores */
+  --color-primario:        #2563eb;
+  --color-primario-hover:  #1d4ed8;
+  --color-secundario:      #f59e0b;
+  --color-fondo:           #f4f6f8;
+  --color-superficie:      #ffffff;
+  --color-texto:           #1f2937;
+  --color-texto-suave:     #6b7280;
+  --color-borde:           #e5e7eb;
+
+  /* Espaciados */
+  --espaciado-xs:  0.25rem;
+  --espaciado-sm:  0.5rem;
+  --espaciado-md:  1rem;
+  --espaciado-lg:  2rem;
+  --espaciado-xl:  3rem;
+
+  /* Tipografía */
+  --fuente-base:    system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tamano-base:    1rem;
+  --tamano-titulo:  2rem;
+
+  /* Bordes y sombras */
+  --radio-sm:       6px;
+  --radio-md:       12px;
+  --radio-full:     999px;
+
+  --sombra-suave:   0 4px 12px rgba(0, 0, 0, 0.08);
+  --sombra-fuerte:  0 10px 30px rgba(0, 0, 0, 0.12);
+
+  /* Transición estándar */
+  --transicion:     0.3s ease;
+}
+
+/* ---------- 2. Tema oscuro ---------- */
+/* Solo redefinimos las variables que cambian.
+   ¡Ningún componente necesita saber que existe el modo oscuro! */
+.tema-oscuro {
+  --color-primario:        #3b82f6;
+  --color-primario-hover:  #60a5fa;
+  --color-secundario:      #fbbf24;
+  --color-fondo:           #0f172a;
+  --color-superficie:      #1e293b;
+  --color-texto:           #f1f5f9;
+  --color-texto-suave:     #94a3b8;
+  --color-borde:           #334155;
+
+  --sombra-suave:   0 4px 12px rgba(0, 0, 0, 0.4);
+  --sombra-fuerte:  0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- 3. Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- 4. Estilos base usando var() ---------- */
+body {
+  font-family: var(--fuente-base);
+  font-size: var(--tamano-base);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: var(--espaciado-lg);
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.contenedor {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-md);
+}
+
+/* ---------- 5. Componentes ---------- */
+.titulo {
+  font-size: var(--tamano-titulo);
+  color: var(--color-primario);
+  text-align: center;
+  margin-bottom: var(--espaciado-sm);
+  transition: color var(--transicion);
+}
+
+.texto {
+  color: var(--color-texto-suave);
+  text-align: center;
+  margin-bottom: var(--espaciado-md);
+  transition: color var(--transicion);
+}
+
+/* Botón */
+.boton {
+  align-self: center;
+  padding: var(--espaciado-sm) var(--espaciado-lg);
+  font-size: var(--tamano-base);
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--color-primario);
+  border: none;
+  border-radius: var(--radio-full);
+  cursor: pointer;
+  box-shadow: var(--sombra-suave);
+  transition:
+    background-color var(--transicion),
+    transform var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.boton:hover {
+  background-color: var(--color-primario-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.boton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Tarjeta */
+.tarjeta {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-lg);
+  border-radius: var(--radio-md);
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-suave);
+  transition:
+    background-color var(--transicion),
+    border-color var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.tarjeta__titulo {
+  color: var(--color-secundario);
+  margin-bottom: var(--espaciado-sm);
+  transition: color var(--transicion);
+}
+
+.tarjeta__texto {
+  color: var(--color-texto-suave);
+  transition: color var(--transicion);
+}
+
+/* ---------- 6. Responsividad ---------- */
+@media (max-width: 480px) {
+  :root {
+    --tamano-titulo: 1.5rem;
+    --espaciado-lg:  1rem;
+    --espaciado-xl:  2rem;
+  }
+
+  body {
+    padding: var(--espaciado-md);
+  }
+}

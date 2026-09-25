@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 12 — Posicionamiento</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenido">
+    <h1>Ejercicio 12 — Posicionamiento</h1>
+    <p>Haz scroll hacia abajo para ver el botón "volver arriba".</p>
+    <p>Pasa el ratón sobre el botón de ayuda para ver el tooltip.</p>
+
+    <!-- Relleno para que la página tenga scroll -->
+    <div class="relleno"></div>
+  </main>
+
+  <!-- Tooltip: contenedor padre con position: relative -->
+  <div class="ayuda">
+    <button class="ayuda__boton" aria-describedby="tooltip-ayuda">?</button>
+    <span class="ayuda__tooltip" id="tooltip-ayuda" role="tooltip">
+      Pulsa el botón inferior para volver arriba.
+    </span>
+  </div>
+
+  <!-- Botón "volver arriba" con position: fixed -->
+  <a href="#" class="volver-arriba" aria-label="Volver arriba">↑</a>
+
+</body>
+</html>
