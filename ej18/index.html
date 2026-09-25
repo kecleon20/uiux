@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 18 — Galería mosaico con CSS Grid</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenedor">
+
+    <header class="cabecera">
+      <h1 class="cabecera__titulo">Galería mosaico</h1>
+      <p class="cabecera__subtitulo">
+        CSS Grid con <code>auto-fill</code>, <code>minmax()</code>,
+        <code>dense</code> y celdas destacadas con <code>span</code>.
+      </p>
+    </header>
+
+    <section class="galeria" aria-label="Galería de imágenes">
+
+      <!-- Destacada: 2x2 -->
+      <figure class="item item--destacado">
+        <img src="https://i.pinimg.com/1200x/8c/ca/46/8cca463da6d707020846bf993f97aa1a.jpg" alt="monito" loading="lazy">
+        <figcaption class="item__caption">Montaña</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://i.pinimg.com/736x/0e/df/99/0edf9914f59b305deed70295364c2057.jpg" alt="Dios" loading="lazy">
+        <figcaption class="item__caption">Bosque</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://i.pinimg.com/736x/71/c9/63/71c963fb3f92492938ffd0a029e21314.jpg" alt="orangutan" loading="lazy">
+        <figcaption class="item__caption">Sendero</figcaption>
+      </figure>
+
+      <!-- Destacada: 2 columnas × 1 fila -->
+      <figure class="item item--ancho">
+        <img src="https://i.pinimg.com/1200x/d6/5a/28/d65a28c5df0747ea6fa0f64ab114df77.jpg" alt="Casa" loading="lazy">
+        <figcaption class="item__caption">Río</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://i.pinimg.com/1200x/07/36/36/0736366798b0abd0ecd7a18d9019286a.jpg" alt="chapel" loading="lazy">
+        <figcaption class="item__caption">Oso</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://picsum.photos/id/1021/400/400" alt="Lago reflejando montañas" loading="lazy">
+        <figcaption class="item__caption">Lago</figcaption>
+      </figure>
+
+      <!-- Destacada: 1 columna × 2 filas -->
+      <figure class="item item--alto">
+        <img src="https://picsum.photos/id/1022/400/800" alt="Cascada en vertical" loading="lazy">
+        <figcaption class="item__caption">Cascada</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://picsum.photos/id/1023/400/400" alt="Camino rural" loading="lazy">
+        <figcaption class="item__caption">Camino</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://picsum.photos/id/1024/400/400" alt="Ave volando" loading="lazy">
+        <figcaption class="item__caption">Ave</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://picsum.photos/id/1025/400/400" alt="Perro descansando" loading="lazy">
+        <figcaption class="item__caption">Perro</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://picsum.photos/id/1026/400/400" alt="Nubes sobre el mar" loading="lazy">
+        <figcaption class="item__caption">Mar</figcaption>
+      </figure>
+
+      <figure class="item">
+        <img src="https://picsum.photos/id/1027/400/400" alt="Mujer en la playa" loading="lazy">
+        <figcaption class="item__caption">Playa</figcaption>
+      </figure>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

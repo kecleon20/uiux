@@ -1,0 +1,389 @@
+/* =========================================================
+   Ejercicio 19 — Formulario multi-step con validación
+   Descripción: 2 pasos controlados con radio buttons,
+   validación nativa HTML5 y feedback visual rojo/verde.
+   ========================================================= */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --color-primario:   #2563eb;
+  --color-primario-hover: #1d4ed8;
+  --color-fondo:      #f4f6f8;
+  --color-superficie: #ffffff;
+  --color-texto:      #1f2937;
+  --color-suave:      #6b7280;
+  --color-borde:      #e5e7eb;
+
+  --color-error:      #dc2626;
+  --color-error-bg:   #fef2f2;
+  --color-exito:      #16a34a;
+  --color-exito-bg:   #f0fdf4;
+
+  --espaciado-sm: 0.5rem;
+  --espaciado-md: 1rem;
+  --espaciado-lg: 2rem;
+
+  --radio: 10px;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transicion: 0.3s ease;
+}
+
+/* ---------- 2. Reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: var(--espaciado-lg) var(--espaciado-md);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* ---------- 3. Cabecera ---------- */
+.cabecera {
+  text-align: center;
+  margin-bottom: var(--espaciado-lg);
+}
+
+.cabecera__titulo {
+  color: var(--color-primario);
+  font-size: 1.6rem;
+}
+
+.cabecera__subtitulo {
+  color: var(--color-suave);
+  font-size: 0.95rem;
+}
+
+/* ---------- 4. Formulario ---------- */
+.form {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-lg);
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+  border: 1px solid var(--color-borde);
+
+  /* Contenedor relativo para posicionar los pasos */
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+}
+
+/* =========================================================
+   CONTROL DE PASOS — radio buttons ocultos
+   ---------------------------------------------------------
+   Ocultamos los radios con la técnica accesible "clip"
+   para que sigan siendo focusables con teclado.
+   ========================================================= */
+.paso-control {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   MIGAS DE PAN (indicador de pasos)
+   ========================================================= */
+.pasos {
+  list-style: none;
+  display: flex;
+  gap: var(--espaciado-md);
+  margin-bottom: var(--espaciado-lg);
+  padding-bottom: var(--espaciado-md);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.pasos__item {
+  flex: 1;
+}
+
+.pasos__label {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  cursor: pointer;
+  color: var(--color-suave);
+  font-size: 0.9rem;
+  transition: color var(--transicion);
+}
+
+.pasos__numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-borde);
+  color: var(--color-suave);
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+/* Cuando el paso correspondiente está activo, iluminamos su miga */
+#paso-1:checked ~ .pasos .pasos__item:nth-child(1) .pasos__label,
+#paso-2:checked ~ .pasos .pasos__item:nth-child(2) .pasos__label {
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+#paso-1:checked ~ .pasos .pasos__item:nth-child(1) .pasos__numero,
+#paso-2:checked ~ .pasos .pasos__item:nth-child(2) .pasos__numero {
+  background-color: var(--color-primario);
+  color: #ffffff;
+}
+
+/* =========================================================
+   TRANSICIÓN ENTRE PASOS
+   ---------------------------------------------------------
+   Los dos pasos están superpuestos (position: absolute).
+   Solo el paso "activo" es visible. La transición suaviza
+   el cambio con opacity + translateX.
+   ========================================================= */
+.paso {
+  border: none;
+  position: absolute;
+  inset: 100px var(--espaciado-lg) var(--espaciado-lg);
+
+  opacity: 0;
+  transform: translateX(30px);
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* Estado inicial de cada paso según el radio marcado */
+#paso-1:checked ~ .paso--1,
+#paso-2:checked ~ .paso--2 {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+  inset: auto;
+}
+
+/* ---------- 5. Campos ---------- */
+.campo {
+  margin-bottom: var(--espaciado-md);
+}
+
+.campo__label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--color-texto);
+}
+
+.campo__req {
+  color: var(--color-error);
+}
+
+.campo__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-texto);
+  background-color: #f9fafb;
+
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio);
+  outline: none;
+
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.campo__input::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================================================
+   VALIDACIÓN NATIVA — :invalid y :valid
+   ---------------------------------------------------------
+   ⚠️ IMPORTANTE: :invalid se aplica al cargar la página si
+   el campo está vacío y es required. Para evitar eso,
+   usamos :not(:placeholder-shown) → solo cuando el usuario
+   ha escrito algo.
+   ========================================================= */
+
+/* Campo inválido SOLO cuando el usuario ya escribió algo */
+.campo__input:not(:placeholder-shown):invalid {
+  border-color: var(--color-error);
+  background-color: var(--color-error-bg);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+/* Campo válido cuando el usuario ya escribió algo */
+.campo__input:not(:placeholder-shown):valid {
+  border-color: var(--color-exito);
+  background-color: var(--color-exito-bg);
+}
+
+/* Foco: prioridad sobre validación */
+.campo__input:focus {
+  border-color: var(--color-primario);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* ---------- 6. Mensajes de error ---------- */
+.campo__error {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  margin-top: 0.35rem;
+  min-height: 1.2em;
+
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Mostrar el error solo si el campo ha sido tocado y es inválido */
+.campo__input:not(:placeholder-shown):invalid ~ .campo__error {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 7. Checkbox de términos ---------- */
+.campo--check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 var(--espaciado-sm);
+  align-items: start;
+  padding: var(--espaciado-sm) 0;
+}
+
+.campo__check {
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  accent-color: var(--color-primario);
+  cursor: pointer;
+}
+
+.campo__label-check {
+  font-size: 0.9rem;
+  color: var(--color-suave);
+  cursor: pointer;
+}
+
+.campo--check .campo__error {
+  grid-column: 1 / -1;
+  margin-left: 26px;
+}
+
+.campo__check:invalid ~ .campo__error {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.paso__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--espaciado-sm);
+  margin-top: var(--espaciado-lg);
+}
+
+.paso__acciones--doble {
+  justify-content: space-between;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--transicion),
+    transform var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.boton--primario {
+  background-color: var(--color-primario);
+  color: #ffffff;
+}
+
+.boton--primario:hover {
+  background-color: var(--color-primario-hover);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+  transform: translateY(-2px);
+}
+
+.boton--primario:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.boton--secundario {
+  background-color: transparent;
+  color: var(--color-suave);
+  border: 2px solid var(--color-borde);
+}
+
+.boton--secundario:hover {
+  background-color: #f9fafb;
+  border-color: var(--color-suave);
+}
+
+/* ---------- 8. Utilidad accesibilidad ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- 9. Responsividad ---------- */
+@media (max-width: 480px) {
+  .form { padding: var(--espaciado-md); }
+
+  .pasos__texto { display: none; }
+
+  .paso__acciones--doble {
+    flex-direction: column-reverse;
+  }
+
+  .boton { width: 100%; }
+}
+
+/* ---------- 10. Accesibilidad: menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .paso,
+  .campo__error,
+  .campo__input,
+  .boton {
+    transition: none;
+  }
+}

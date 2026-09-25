@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 19 — Formulario multi-step</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenedor">
+
+    <header class="cabecera">
+      <h1 class="cabecera__titulo">Crear cuenta</h1>
+      <p class="cabecera__subtitulo">Paso a paso, sin JavaScript</p>
+    </header>
+
+    <form class="form" action="#" method="post" novalidate>
+
+      <!-- ===================================================
+           RADIO BUTTONS DE CONTROL (ocultos visualmente)
+           Guardan en qué paso estamos.
+           =================================================== -->
+      <input type="radio" name="paso" id="paso-1" class="paso-control" checked>
+      <input type="radio" name="paso" id="paso-2" class="paso-control">
+
+      <!-- ===================================================
+           INDICADOR DE PASOS (migas de pan)
+           =================================================== -->
+      <ol class="pasos" aria-label="Progreso del formulario">
+        <li class="pasos__item">
+          <label for="paso-1" class="pasos__label">
+            <span class="pasos__numero">1</span>
+            <span class="pasos__texto">Datos personales</span>
+          </label>
+        </li>
+        <li class="pasos__item">
+          <label for="paso-2" class="pasos__label">
+            <span class="pasos__numero">2</span>
+            <span class="pasos__texto">Cuenta</span>
+          </label>
+        </li>
+      </ol>
+
+      <!-- ===================================================
+           PASO 1 — DATOS PERSONALES
+           =================================================== -->
+      <fieldset class="paso paso--1">
+        <legend class="sr-only">Datos personales</legend>
+
+        <div class="campo">
+          <label class="campo__label" for="nombre">
+            Nombre completo <span class="campo__req" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="campo__input"
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Ana García"
+            autocomplete="name"
+            minlength="3"
+            required>
+          <p class="campo__error" aria-live="polite">
+            Introduce al menos 3 caracteres.
+          </p>
+        </div>
+
+        <div class="campo">
+          <label class="campo__label" for="email">
+            Correo electrónico <span class="campo__req" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="campo__input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="tu@correo.com"
+            autocomplete="email"
+            required>
+          <p class="campo__error" aria-live="polite">
+            Introduce un correo válido.
+          </p>
+        </div>
+
+        <div class="campo">
+          <label class="campo__label" for="telefono">
+            Teléfono <span class="campo__req" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="campo__input"
+            type="tel"
+            id="telefono"
+            name="telefono"
+            placeholder="+34 600 000 000"
+            autocomplete="tel"
+            pattern="[+0-9\s]{9,15}"
+            required>
+          <p class="campo__error" aria-live="polite">
+            Introduce un teléfono válido (9 a 15 dígitos).
+          </p>
+        </div>
+
+        <div class="paso__acciones">
+          <label for="paso-2" class="boton boton--primario">Siguiente →</label>
+        </div>
+      </fieldset>
+
+      <!-- ===================================================
+           PASO 2 — CUENTA
+           =================================================== -->
+      <fieldset class="paso paso--2">
+        <legend class="sr-only">Datos de la cuenta</legend>
+
+        <div class="campo">
+          <label class="campo__label" for="usuario">
+            Nombre de usuario <span class="campo__req" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="campo__input"
+            type="text"
+            id="usuario"
+            name="usuario"
+            placeholder="anagarcia"
+            autocomplete="username"
+            pattern="[a-zA-Z0-9_]{3,16}"
+            required>
+          <p class="campo__error" aria-live="polite">
+            Solo letras, números y _ (3 a 16 caracteres).
+          </p>
+        </div>
+
+        <div class="campo">
+          <label class="campo__label" for="password">
+            Contraseña <span class="campo__req" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="campo__input"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            autocomplete="new-password"
+            minlength="8"
+            required>
+          <p class="campo__error" aria-live="polite">
+            Mínimo 8 caracteres.
+          </p>
+        </div>
+
+        <div class="campo">
+          <label class="campo__label" for="pais">País</label>
+          <select class="campo__input" id="pais" name="pais">
+            <option value="">Selecciona un país…</option>
+            <option value="es">España</option>
+            <option value="mx">México</option>
+            <option value="ar">Argentina</option>
+            <option value="co">Colombia</option>
+          </select>
+        </div>
+
+        <div class="campo campo--check">
+          <input
+            class="campo__check"
+            type="checkbox"
+            id="terminos"
+            name="terminos"
+            required>
+          <label class="campo__label-check" for="terminos">
+            Acepto los términos y condiciones <span class="campo__req" aria-hidden="true">*</span>
+          </label>
+          <p class="campo__error" aria-live="polite">
+            Debes aceptar los términos.
+          </p>
+        </div>
+
+        <div class="paso__acciones paso__acciones--doble">
+          <label for="paso-1" class="boton boton--secundario">← Atrás</label>
+          <button type="submit" class="boton boton--primario">Crear cuenta</button>
+        </div>
+      </fieldset>
+
+    </form>
+
+  </main>
+
+</body>
+</html>

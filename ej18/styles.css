@@ -1,0 +1,202 @@
+/* =========================================================
+   Ejercicio 18 — Galería tipo mosaico (Masonry-like)
+   Descripción: grid responsive auto-adaptable con auto-fill,
+   minmax, dense y celdas destacadas con span.
+   ========================================================= */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --color-primario:   #2563eb;
+  --color-fondo:      #f4f6f8;
+  --color-superficie: #ffffff;
+  --color-texto:      #1f2937;
+  --color-suave:      #6b7280;
+  --color-borde:      #e5e7eb;
+
+  --espaciado-sm: 0.5rem;
+  --espaciado-md: 1rem;
+  --espaciado-lg: 2rem;
+
+  --radio: 12px;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --sombra-hover: 0 10px 24px rgba(0, 0, 0, 0.15);
+  --transicion: 0.3s ease;
+
+  /* Tamaño mínimo de cada celda */
+  --celda-min: 220px;
+  --gap-galeria: 1rem;
+}
+
+/* ---------- 2. Reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: var(--espaciado-lg) var(--espaciado-md);
+}
+
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- 3. Cabecera ---------- */
+.cabecera {
+  text-align: center;
+  margin-bottom: var(--espaciado-lg);
+}
+
+.cabecera__titulo {
+  color: var(--color-primario);
+  font-size: 1.75rem;
+  margin-bottom: var(--espaciado-sm);
+}
+
+.cabecera__subtitulo {
+  color: var(--color-suave);
+  font-size: 0.95rem;
+}
+
+.cabecera__subtitulo code {
+  background-color: #eff6ff;
+  color: var(--color-primario);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* =========================================================
+   GALERÍA — Grid auto-adaptable
+   ---------------------------------------------------------
+   - repeat(auto-fill, minmax(220px, 1fr))
+       → tantas columnas como quepan, cada una mínimo 220px
+   - grid-auto-flow: dense
+       → rellena huecos con elementos pequeños posteriores
+   - grid-auto-rows: 220px
+       → todas las filas tienen una altura consistente
+       (necesario para que "span 2" funcione visualmente)
+   ========================================================= */
+.galeria {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(var(--celda-min), 1fr));
+  grid-auto-rows: var(--celda-min);
+
+  grid-auto-flow: dense;    /* 🔑 rellena huecos automáticamente */
+
+  gap: var(--gap-galeria);
+}
+
+/* =========================================================
+   ITEM BASE
+   ========================================================= */
+.item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background-color: var(--color-superficie);
+  box-shadow: var(--sombra);
+  transition:
+    transform var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* recorta sin deformar */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-hover);
+}
+
+.item:hover img {
+  transform: scale(1.05);
+}
+
+/* Pie de foto (caption) */
+.item__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--espaciado-sm) var(--espaciado-md);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--transicion), transform var(--transicion);
+}
+
+.item:hover .item__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   CELDAS DESTACADAS — span
+   ========================================================= */
+
+/* 2 columnas × 2 filas → la "estrella" del mosaico */
+.item--destacado {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Ancho: 2 columnas × 1 fila */
+.item--ancho {
+  grid-column: span 2;
+}
+
+/* Alto: 1 columna × 2 filas */
+.item--alto {
+  grid-row: span 2;
+}
+
+/* =========================================================
+   RESPONSIVIDAD
+   ---------------------------------------------------------
+   Con auto-fill, el grid ya se adapta solo. Pero
+   ajustamos el "min" en móvil muy estrecho para evitar
+   overflow, y reducimos los span en pantallas pequeñas.
+   ========================================================= */
+@media (max-width: 480px) {
+  :root {
+    --celda-min: 150px;
+    --gap-galeria: 0.75rem;
+  }
+
+  /* En móvil, las celdas destacadas pasan a ocupar solo 1x1
+     para no romper la cuadrícula de 2 columnas */
+  .item--destacado,
+  .item--ancho,
+  .item--alto {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .cabecera__titulo {
+    font-size: 1.4rem;
+  }
+}
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .item img,
+  .item__caption {
+    transition: none;
+  }
+}

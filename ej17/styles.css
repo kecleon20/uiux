@@ -1,0 +1,253 @@
+/* =========================================================
+   Ejercicio 17 — Menú hamburguesa solo CSS
+   Descripción: menú responsive que se colapsa en móvil
+   usando el patrón "checkbox hack" (sin JS).
+   ========================================================= */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --color-primario:   #2563eb;
+  --color-fondo:      #f4f6f8;
+  --color-superficie: #ffffff;
+  --color-texto:      #1f2937;
+  --color-suave:      #6b7280;
+  --color-borde:      #e5e7eb;
+
+  --espaciado-sm: 0.5rem;
+  --espaciado-md: 1rem;
+  --espaciado-lg: 2rem;
+
+  --radio: 10px;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  --transicion: 0.3s ease;
+}
+
+/* ---------- 2. Reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   CABECERA
+   ========================================================= */
+.cabecera {
+  background-color: var(--color-superficie);
+  padding: var(--espaciado-md);
+  box-shadow: var(--sombra);
+  border-bottom: 1px solid var(--color-borde);
+
+  /* Layout de la cabecera: logo | label | nav */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaciado-sm);
+
+  position: relative;
+  z-index: 100;
+}
+
+.cabecera__logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  text-decoration: none;
+}
+
+/* =========================================================
+   CHECKBOX OCULTO
+   ---------------------------------------------------------
+   Lo ocultamos visualmente, pero NO con display:none, porque
+   eso rompería la accesibilidad por teclado. Usamos la
+   técnica de "visualmente oculto" para poder seguir
+   enfocándolo con Tab.
+   ========================================================= */
+.menu-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+  /* Cuando recibe foco, mostramos un halo en el label */
+}
+
+/* Foco visible en el label cuando el checkbox está enfocado */
+.menu-toggle:focus-visible + .menu-icono {
+  outline: 3px solid rgba(37, 99, 235, 0.4);
+  outline-offset: 3px;
+  border-radius: var(--radio);
+}
+
+/* =========================================================
+   ICONO HAMBURGUESA (label)
+   ========================================================= */
+.menu-icono {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 32px;
+  height: 24px;
+  cursor: pointer;
+
+  /* Para poder animar las líneas internas */
+  position: relative;
+  z-index: 10;
+}
+
+.menu-icono__linea {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-texto);
+  border-radius: 3px;
+  transition: transform var(--transicion), opacity var(--transicion);
+}
+
+/* =========================================================
+   MENÚ DE NAVEGACIÓN — MÓVIL (colapsado por defecto)
+   ========================================================= */
+.menu {
+  /* Ocupa todo el ancho de la cabecera y cae debajo */
+  flex-basis: 100%;
+  order: 3;
+
+  /* Estado inicial: cerrado */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.menu__lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-sm);
+  padding-top: var(--espaciado-md);
+}
+
+.menu__enlace {
+  display: block;
+  padding: var(--espaciado-sm) var(--espaciado-md);
+  color: var(--color-texto);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--radio);
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.menu__enlace:hover {
+  background-color: #eff6ff;
+  color: var(--color-primario);
+}
+
+/* =========================================================
+   🔑 EL TRUCO: checkbox marcado → menú abierto
+   ---------------------------------------------------------
+   Selector ~ : "hermano general" → cualquier .menu que sea
+   hermano posterior del checkbox. Es el que usamos porque
+   el label se interpone entre ellos.
+   ========================================================= */
+.menu-toggle:checked ~ .menu {
+  max-height: 500px;    /* suficientemente alto para el contenido */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================================
+   ANIMACIÓN DEL ICONO → se transforma en "X" al abrir
+   ========================================================= */
+.menu-toggle:checked + .menu-icono .menu-icono__linea:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle:checked + .menu-icono .menu-icono__linea:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle:checked + .menu-icono .menu-icono__linea:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* =========================================================
+   CONTENIDO (solo para el ejemplo)
+   ========================================================= */
+.contenido {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--espaciado-lg) var(--espaciado-md);
+}
+
+.contenido h1 {
+  color: var(--color-primario);
+  margin-bottom: var(--espaciado-md);
+}
+
+.contenido p {
+  color: var(--color-suave);
+  margin-bottom: var(--espaciado-sm);
+}
+
+/* =========================================================
+   DESKTOP (≥ 768px)
+   ---------------------------------------------------------
+   - Ocultamos el icono hamburguesa
+   - Mostramos el menú en horizontal, siempre visible
+   - El checkbox deja de tener efecto
+   ========================================================= */
+@media (min-width: 768px) {
+
+  .menu-icono {
+    display: none;
+  }
+
+  .menu {
+    /* Reset del estado colapsado */
+    flex-basis: auto;
+    order: 0;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+    background-color: transparent;
+  }
+
+  .menu__lista {
+    flex-direction: row;
+    gap: var(--espaciado-sm);
+    padding-top: 0;
+  }
+
+  /* El checkbox no se usa en escritorio, lo ocultamos del todo */
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* =========================================================
+   ACCESIBILIDAD: usuarios que prefieren menos movimiento
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .menu,
+  .menu-icono__linea {
+    transition: none;
+  }
+}
