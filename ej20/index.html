@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Colono - Soluciones simples para problemas complejos. Diseño UX, desarrollo web y consultoría.">
+    <title>Colono | Diseño y Desarrollo Web</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ============================
+         NAVBAR FIJA
+         ============================ -->
+    <header class="navbar">
+        <a href="#hero" class="logo" aria-label="Ir al inicio">Colono</a>
+        <nav aria-label="Navegación principal">
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================
+             HERO
+             ============================ -->
+        <section id="hero" class="hero" role="img"
+            aria-label="Imagen de fondo: paisaje representativo de Colono">
+            <div class="hero-contenido">
+                <h1>Bienvenido a Colono</h1>
+                <p>Soluciones simples para problemas complejos.</p>
+                <a href="#contacto" class="btn-hero">Trabajemos juntos</a>
+            </div>
+        </section>
+
+        <!-- ============================
+             SERVICIOS (CSS GRID)
+             ============================ -->
+        <section id="servicios" class="servicios">
+            <h2>Nuestros servicios</h2>
+            <p class="subtitulo">Todo lo que necesitás para llevar tu proyecto al siguiente nivel.</p>
+
+            <div class="grid-servicios">
+                <article class="card-servicio">
+                    <h3>Diseño UX</h3>
+                    <p>Interfaces claras y fáciles de usar, centradas en el usuario.</p>
+                </article>
+
+                <article class="card-servicio">
+                    <h3>Desarrollo Web</h3>
+                    <p>Sitios rápidos con HTML y CSS moderno, accesibles y responsivos.</p>
+                </article>
+
+                <article class="card-servicio">
+                    <h3>Consultoría</h3>
+                    <p>Asesoramos en cada etapa del proyecto, desde la idea hasta el lanzamiento.</p>
+                </article>
+
+                <article class="card-servicio">
+                    <h3>Soporte</h3>
+                    <p>Acompañamiento continuo después de la entrega, para que nunca estés solo.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================
+             TESTIMONIOS (CARRUSEL + SCROLL-SNAP)
+             ============================ -->
+        <section id="testimonios" class="testimonios">
+            <h2>Testimonios</h2>
+            <p class="subtitulo">Lo que dicen quienes ya trabajaron con nosotros.</p>
+
+            <div class="carrusel" aria-label="Carrusel de testimonios de clientes" tabindex="0">
+                <blockquote class="testimonio">
+                    <p>"Excelente atención y resultados. Superaron todas nuestras expectativas."</p>
+                    <cite>— Ana G.</cite>
+                </blockquote>
+
+                <blockquote class="testimonio">
+                    <p>"El sitio quedó muy prolijo, rápido y fácil de mantener."</p>
+                    <cite>— Marcos L.</cite>
+                </blockquote>
+
+                <blockquote class="testimonio">
+                    <p>"Profesionales de principio a fin. Los recomiendo sin dudar."</p>
+                    <cite>— Julia P.</cite>
+                </blockquote>
+
+                <blockquote class="testimonio">
+                    <p>"Entendieron nuestra visión y la llevaron al diseño perfecto."</p>
+                    <cite>— Diego R.</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- ============================
+             CONTACTO
+             ============================ -->
+        <section id="contacto" class="contacto">
+            <h2>Contacto</h2>
+            <p class="subtitulo">Contanos sobre tu proyecto y te respondemos a la brevedad.</p>
+
+            <form action="#" method="post" autocomplete="on">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- ============================
+         FOOTER
+         ============================ -->
+    <footer>
+        <p>&copy; 2026 Colono. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
